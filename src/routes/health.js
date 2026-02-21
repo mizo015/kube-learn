@@ -3,7 +3,7 @@
 async function healthRoutes(fastify) {
   // Liveness probe — always returns 200 if the process is running
   fastify.get('/healthz', async () => {
-    return { status: 'ok', uptime: process.uptime() };
+    return { status: 'ok', timestamp: new Date().toISOString(), uptime: process.uptime() };
   });
 
   // Readiness probe — returns 200 only if the DB connection is healthy
