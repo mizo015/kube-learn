@@ -1,0 +1,42 @@
+namespace: kube-learn
+createNamespace: true
+
+api:
+  replicas: 2
+  image:
+    repository: kube-learn-api
+    tag: latest
+    pullPolicy: Never
+  port: 3000
+  livenessProbe:
+    path: /healthz
+    initialDelaySeconds: 5
+    periodSeconds: 10
+  readinessProbe:
+    path: /readyz
+    initialDelaySeconds: 5
+    periodSeconds: 5
+  resources: {}
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: true
+  annotations: {}
+  path: /
+  pathType: Prefix
+
+db:
+  host: postgres
+  port: "5432"
+  name: kube_learn
+  user: postgres
+  password: postgres
+
+postgres:
+  enabled: true
+  image: postgres:16-alpine
+  storage: 1Gi
+  resources: {}

@@ -1,0 +1,15 @@
+kube-learn has been deployed to namespace "{{ .Values.namespace }}".
+
+To check the status of the deployment:
+
+  kubectl get all -n {{ .Values.namespace }}
+
+To access the API via port-forward:
+
+  kubectl port-forward -n {{ .Values.namespace }} svc/{{ include "kube-learn.fullname" . }}-api {{ .Values.service.port }}:{{ .Values.service.port }}
+
+Then test the endpoints:
+
+  curl http://localhost:{{ .Values.service.port }}/healthz
+  curl http://localhost:{{ .Values.service.port }}/readyz
+  curl http://localhost:{{ .Values.service.port }}/info
