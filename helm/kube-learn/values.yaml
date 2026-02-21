@@ -4,7 +4,7 @@ api:
   replicas: 2
   image:
     repository: ghcr.io/mizo015/kube-learn
-    tag: 6d74efb43effa30cc44f62f16b0bae6f8405896a
+    tag: df590997a45616eee04614cd3f02d7492eafe8a5
     pullPolicy: IfNotPresent
   port: 3000
   livenessProbe:
