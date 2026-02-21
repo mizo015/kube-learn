@@ -12,7 +12,7 @@ async function healthRoutes(fastify) {
       const client = await fastify.pg.connect();
       await client.query('SELECT 1');
       client.release();
-      return { status: 'ready' };
+      return { status: 'ready', db: 'ok' };
     } catch (err) {
       reply.code(503);
       return { status: 'not ready', error: err.message };
