@@ -1,11 +1,10 @@
 namespace: kube-learn
 createNamespace: true
-
 api:
   replicas: 2
   image:
     repository: ghcr.io/mizo015/kube-learn
-    tag: latest
+    tag: 6d74efb43effa30cc44f62f16b0bae6f8405896a
     pullPolicy: IfNotPresent
   port: 3000
   livenessProbe:
@@ -17,24 +16,20 @@ api:
     initialDelaySeconds: 5
     periodSeconds: 5
   resources: {}
-
 service:
   type: ClusterIP
   port: 3000
-
 ingress:
   enabled: true
   annotations: {}
   path: /
   pathType: Prefix
-
 db:
   host: postgres
   port: "5432"
   name: kube_learn
   user: postgres
   password: postgres
-
 postgres:
   enabled: true
   image: postgres:16-alpine
