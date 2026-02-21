@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: kube-learn
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/refresh-interval: "30s"
 spec:
   project: default
   source:
