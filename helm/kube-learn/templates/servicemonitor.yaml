@@ -1,0 +1,17 @@
+{{- if .Values.api.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "kube-learn.fullname" . }}-api
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "kube-learn.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "kube-learn.apiSelectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: http
+      path: {{ .Values.api.serviceMonitor.path }}
+      interval: {{ .Values.api.serviceMonitor.interval }}
+{{- end }}

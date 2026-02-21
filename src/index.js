@@ -3,11 +3,13 @@
 const fastify = require('fastify')({ logger: true });
 const config = require('./config');
 const dbPlugin = require('./plugins/db');
+const metricsPlugin = require('./plugins/metrics');
 const healthRoutes = require('./routes/health');
 const infoRoutes = require('./routes/info');
 const messagesRoutes = require('./routes/messages');
 
 fastify.register(dbPlugin);
+fastify.register(metricsPlugin);
 fastify.register(healthRoutes);
 fastify.register(infoRoutes);
 fastify.register(messagesRoutes);

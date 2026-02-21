@@ -16,6 +16,10 @@ api:
     initialDelaySeconds: 5
     periodSeconds: 5
   resources: {}
+  serviceMonitor:
+    enabled: true
+    interval: 30s
+    path: /metrics
 service:
   type: ClusterIP
   port: 3000
